@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  cinemabot:
+    build: .
+    container_name: cinemabot
+    restart: unless-stopped
+    volumes:
+      - cinemabot_data:/data  # для сохранения БД между перезапусками
+    env_file:
+      - .env  # загружаем переменные окружения
+    # Можно также явно указать:
+    # environment:
+    #   - BOT_TOKEN=${BOT_TOKEN}
+    #   - DATABASE_PATH=/data/cinemabot.db
+
+volumes:
+  cinemabot_data:  # именованный volume для данных
